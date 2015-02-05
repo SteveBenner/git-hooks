@@ -3,33 +3,37 @@ This is my personal collection git hooks, all written in Ruby. I have found that
 
 The first one that I implemented solved what had already become a massive headache for me, namely converting the whitespace in my source files from tabs into spaces. Before installing [this hook][1], I had uploaded dozens of files to GitHub with horribly skewed formatting, not even realizing the mistake due to my IDE hiding the actual formatting.
 
-***todo: link to hook***
-
 ### Configuration
-Git is elegant software that makes customization a piece of cake for developers. I keep my hooks in the local folder `~/.git-templates/`, and I configure the subdirectory `global/` as my *template directory* by adding the following two lines to my  `~/.gitconfig` file:
+Git is elegant software that makes customization a piece of cake for developers. I configure the local folder `~/.git-templates/` as my *template directory* by adding the following two lines to `~/.gitconfig`:
 
 ```aconf
 [init]
-  templatedir = '~/.git-templates/global'
+  templatedir = '~/.git-templates'
 ```
 
-[You can use other means to specify the template folder as well][1]--Git is very flexible. This setting ensures the contents of `global/` will be copied to every newly-initialized git repo (on `git init`).
+Contents of this directory will now be copied to every newly-initialized git repo's `.git/` folder upon calling `git init`. [You can use other means to specify the template folder as well][1]--Git is very flexible.
+
+To make my scripts available globally, I create a symbolic link from the source code at `~/github/git-hooks/global/` to `~/.git-templates/hooks/`. I think symbolic linking is a good strategy in this case because it provides you with a single point of control for ALL local Git hook operations, keeping things simple, stable, and secure. It also prevents gratuitous file duplication/versioning.
 
 ## Global / default hooks
-I symbolically link the local `global/` directory in this repo to `~/.git-templates/global/hooks/` so that given aforementioned config, all contained scripts will present by default in my local repositories.
 
 ### Pre-Commit
 
 - **generate-img-previews**
 
-    This script generates a Markdown README file with links to all the images in the same folder with a special file name suffix, so your boring old GitHub README turns into a spiffy image gallery.
+    Generates a Markdown README file with links to all the images in the same folder with a special file name suffix, so your boring old GitHub README turns into a spiffy image gallery.
     
 ### Post-Commit
 
-- **convert-tabs-to-spaces**
+- **convert-indentation**
 
-    ~~This hook runs on all files that were modified in a commit, converting `\t` tabs within to spaces using Ruby. A `Hash` in the script specifies the tab width for each language.~~ **THIS IS CURRENTLY BROKEN**
+    Runs on all files that were modified in a commit, converting `\t` characters (tabs) within to spaces. The tab width for each language is defined statically within the script.
     
+---
+**TODO**
+
+- Set up a system for calling multiple scripts
+- Learn more about how hooks work!\
     
 
-[1]: http://git-scm.com/docs/git-init
+[1]: /post-commit/convert-indentation.rb
