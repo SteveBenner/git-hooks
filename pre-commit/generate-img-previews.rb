@@ -17,32 +17,32 @@ TITLE = 'App Icons'
 LEGAL_FILE = Dir.glob('{LEGAL,COPYRIGHT}.*').first
 
 images = Dir.glob("*.{png,jpg}").reduce({}) do |list, img|
-	# divide files into arrays - one for each unique img size
-	if img =~ /-(\d*)\./
-		if list[$1]
-			list[$1] << img
-		else
-			list[$1] = [img]
-		end
-	end
-	list
+  # divide files into arrays - one for each unique img size
+  if img =~ /-(\d*)\./
+    if list[$1]
+      list[$1] << img
+    else
+      list[$1] = [img]
+    end
+  end
+  list
 end
 
 # update README file, or create one if nonexistent
 File.open 'README.md', 'w' do |f|
-	f.puts '# ' + TITLE
+  f.puts '# ' + TITLE
   f.puts ''
-	f.puts File.read LEGAL_FILE # insert legal disclaimer
-	f.puts ''
-	f.puts '---'
-	images.sort_by { |size, i| size.to_i }.reverse_each do |dimension, images|
-		f.puts "## #{dimension} px"
-		images.each do |path|
-			title = path.scan(/(\w*)-/).flatten.map(&:capitalize).join(' ')
-			f.puts "![#{title}](#{path})"
-		end
-		f.puts ''
-	end
+  f.puts File.read LEGAL_FILE # insert legal disclaimer
+  f.puts ''
+  f.puts '---'
+  images.sort_by { |size, i| size.to_i }.reverse_each do |dimension, images|
+    f.puts "## #{dimension} px"
+    images.each do |path|
+      title = path.scan(/(\w*)-/).flatten.map(&:capitalize).join(' ')
+      f.puts "![#{title}](#{path})"
+    end
+    f.puts ''
+  end
 end
 
 puts "Links were successfully generated for #{images.count} files:"
