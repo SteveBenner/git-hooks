@@ -10,5 +10,9 @@ EXTENSIONS = TAB_SIZES.keys.map { |ext| ".#{ext.to_s}" }
   space_str = ' ' * TAB_SIZES[File.extname(file)[1..-1].to_sym]
   File.write path, File.open(path) { |f| f.read.gsub(/\t/, space_str) }
 end
-
-# todo: report altered lines/files
+# After replacing tabs, modified files must once more be added to the Git index and committed
+MODIFIED = `git ls-files -m`.split
+if MODIFIED.size > 1
+	`git add #{EXTENSIONS.collect { |e| '*' + e }.join(' ')}`
+	`git commit -m 'GIT HOOK: Converted all tabs into spaces in #{MODIFIED.count} files.'`
+end

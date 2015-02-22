@@ -31,9 +31,11 @@ end
 # update README file, or create one if nonexistent
 File.open 'README.md', 'w' do |f|
   f.puts '# ' + TITLE
-  f.puts ''
+  f.puts
+  f.puts '[THIS FILE WAS GENERATED AUTOMATICALLY BY THE SCRIPT AT THIS LINK](https://github.com/SteveBenner/ruby-scripts/blob/master/git-hooks/pre-commit/generate-img-previews.rb)'
+  f.puts
   f.puts File.read LEGAL_FILE # insert legal disclaimer
-  f.puts ''
+  f.puts
   f.puts '---'
   images.sort_by { |size, i| size.to_i }.reverse_each do |dimension, images|
     f.puts "## #{dimension} px"

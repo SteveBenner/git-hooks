@@ -8,7 +8,7 @@ Git is elegant software that makes customization a piece of cake for developers.
 
 ```aconf
 [init]
-  templatedir = '~/.git-templates'
+  templatedir = ~/.git-templates
 ```
 
 Contents of this directory will now be copied to every newly-initialized git repo's `.git/` folder upon calling `git init`. [You can use other means to specify the template folder as well][1]--Git is very flexible.
