@@ -13,6 +13,6 @@ end
 # After replacing tabs, modified files must once more be added to the Git index and committed
 MODIFIED = `git ls-files -m`.split
 if MODIFIED.size > 1
-	`git add #{EXTENSIONS.collect { |e| '*' + e }.join(' ')}`
-	`git commit -m 'GIT HOOK: Converted all tabs into spaces in #{MODIFIED.count} files.'`
+  `git add #{EXTENSIONS.collect { |e| '*' + e }.join(' ')}`
+  `git commit -m 'GIT HOOK: Converted all tabs into spaces in #{MODIFIED.count} files.'`
 end

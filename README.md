@@ -1,10 +1,10 @@
 # Git Hooks
-This is my personal collection git hooks, all written in Ruby. I have found that setting up a few hooks properly is *well* worth the effort, and their automation is a very straightforward process.
+This is my personal collection of git hooks, all written in Ruby. I have found that setting up a few hooks properly is *well* worth the effort, and their automation is a very straightforward process.
 
-The first one that I implemented solved what had already become a massive headache for me, namely converting the whitespace in my source files from tabs into spaces. Before installing [this hook][1], I had uploaded dozens of files to GitHub with horribly skewed formatting, not even realizing the mistake due to my IDE hiding the actual formatting.
+The first one I implemented solved what had already become a massive headache for me, namely converting the whitespace in my source files from tabs into spaces. Before installing [this hook][1], I had uploaded dozens of files to GitHub with horribly skewed formatting, not even realizing the mistake due to my IDE hiding the actual formatting.
 
 ### Configuration
-Git is elegant software that makes customization a piece of cake for developers. I configure the local folder `~/.git-templates/` as my *template directory* by adding the following two lines to `~/.gitconfig`:
+Git is elegant software that makes customization a piece of cake for developers. I configure the local folder `~/.git-templates/` as my *template directory* by adding the following lines to `~/.gitconfig`
 
 ```aconf
 [init]
@@ -33,7 +33,7 @@ To make my scripts available globally, I create a symbolic link from the source 
 **TODO**
 
 - Set up a system for calling multiple scripts
-- Learn more about how hooks work!\
+- Learn more about how hooks work!
     
 
 [1]: /post-commit/convert-indentation.rb
