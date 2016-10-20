@@ -19,21 +19,21 @@ To make my scripts available globally, I create a symbolic link from the source 
 
 ### Pre-Commit
 
-- **generate-img-previews**
+- `generate-img-previews`
 
     Generates a Markdown README file with links to all the images in the same folder with a special file name suffix, so your boring old GitHub README turns into a spiffy image gallery.
-    
+
 ### Post-Commit
 
-- **convert-indentation**
+- `convert-indentation`
 
-    Runs on all files that were modified in a commit, converting `\t` characters (tabs) within to spaces. The tab width for each language is defined statically within the script.
-    
+    Converts all `\t` characters (tabs) to spaces within any code files that have been modified, and then re-commits them with a message notifying the number of altered files. The list of languages checked, and corresponding tab widths are defined in the script statically.
+
 ---
 **TODO**
 
 - Set up a system for calling multiple scripts
 - Learn more about how hooks work!
-    
+
 
 [1]: /post-commit/convert-indentation.rb
